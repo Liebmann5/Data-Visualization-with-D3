@@ -1,0 +1,13 @@
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    // The data() method is used on a "selection of DOM elements"{.select()} to attach the data to those elements.{So 12 attaches to the 1st found element in select; 31 attaches to the next found iteration; etc.} 
+    d3.select("body").selectAll("h2")       //Select the body node . then select all h2 elements
+      .data(dataset)                        //{used with .select()} Makes D3 aware of the dataset!!
+      .enter()                              //compares data with selected items && if less selected fills empty
+      .append("h2")                         //how we add the argument element to the document
+      .text("New Title");                   //Sets the argument text = to the elements text value
+   
+  </script>
+</body>
