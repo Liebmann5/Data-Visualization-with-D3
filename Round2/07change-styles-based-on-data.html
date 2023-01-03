@@ -1,0 +1,88 @@
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      
+      .style("color", (d) => { return ((d < 20) ? "red" : "green"); });
+
+
+  </script>
+</body>
+
+
+
+
+<!--
+DIDN'T PUT A RETURN, SO THIS EXPLAINS WHY IN THIS SITUATION ONE IS NEEDED!!!
+
+Q:
+Why is the style method wrong?
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+      .style("color", (d) => { (d < 20) ? "red" : "green" });
+
+
+      // Add your code above this line
+  </script>
+</body>
+
+GPT:
+In the code you provided, the style() method is not necessarily "wrong", but there is an issue with the callback function that is passed to it. The callback function is intended to set the color of the h2 elements based on the value of d.
+
+The callback function uses a ternary operator to determine the color to set based on the value of d. If d is less than 20, the function should return "red", and if d is greater than or equal to 20, the function should return "green". However, the callback function is missing the return statement that is required to return a value from the function.
+
+To fix the issue, you can add a return statement to the callback function like this:
+
+        .style("color", (d) => { return (d < 20) ? "red" : "green" });
+
+With this change, the style() method should work as intended, setting the color of the h2 elements to "red" if the corresponding data value is less than 20, and to "green" if the corresponding data value is greater than or equal to 20.
+
+Q:Why was a return statement needed? Do all callback need a return statement?
+
+GPT:
+A return statement is needed in the callback function passed to the style() method because the function is expected to return a value that will be used by the style() method. In this case, the function is expected to return a string that specifies the color to set for the h2 elements.
+
+In general, a callback function should include a return statement if it is expected to return a value. This is because the purpose of a callback function is to perform a specific task or computation and return a result. Without a return statement, the callback function will not have a value to return and will not be able to fulfill its intended purpose.
+
+However, not all callback functions necessarily need a return statement. It depends on the context in which the callback function is used and what is expected of it. For example, some callback functions may not be expected to return a value, or they may not need to return a value because the value is not used or needed by the calling function. In these cases, the callback function may not include a return statement.
+
+Q:
+I don't understand why that code needed a return statement but this one doesn't?<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"));
+     
+  </script>
+</body>
+
+GPT:
+In the second piece of code you provided, the callback function passed to the text() method does include a return statement. The return statement is the part of the function that follows the => arrow.
+
+The callback function passed to the text() method in this code returns a string that is the result of concatenating the value of d with the string " USD". This is the value that is used by the text() method to set the text content of the h2 elements.
+
+In general, a callback function should include a return statement if it is expected to return a value. In the case of the text() method, the callback function is expected to return a string that will be used as the text content of the selected elements.
+
+In contrast, the callback function passed to the style() method in the first piece of code you provided does not include a return statement. This is why a return statement was needed in that case, but not in the second piece of code you provided.
+  -->
+
+
+<!-- This works too apparently!!! -->
+<!-- .style("height", (d) => (d + "px")) -->
