@@ -1,0 +1,17 @@
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      // he last two challenges cover the basics of displaying data dynamically with D3 using the data() and enter() methods. These methods take a data set and, together with the append() method, create a new DOM element for each entry in the data set.
+
+      //The D3 text() method can take a string or a callback function as an argument.
+      .text((dataset) => dataset + " USD");   //callback = we send a f(n) as an argument
+      /*BELIEF:I think!! an easier way to think about this is that ?each of these methods in this 'method chain' are handled 1 at a time? so d3.select("body").selectAll("h2")....text(callbackFunction) is only dealing with one h2 element at a time???? This would explain why we only need dataset as a parameter! and no specification for a specified index AND it's b/c d3.select("body").selectAll("h2")....text(callbackFunction) only handles one element at a time... which means we work through ever current element AND index!!!!!*/
+
+      
+  </script>
+</body>
