@@ -1,0 +1,112 @@
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      //.text((d) => (d))     //returns just the number SO b/c .text() can only accept string or f(n)'s as arguments, I think the .text() just changes any value returned from the f(n) into a string
+      .text((d) => (d + " USD"))
+
+      //D3 lets you add inline CSS styles on dynamic elements with the style() method. The style() method takes a comma-separated key-value pair as an argument.
+      .style("font-family", "verdana");
+
+      
+  </script>
+</body>
+
+
+<!--
+HOW THE CALLBACK f(n) AND .text() METHOD WORK!!!!!!!
+
+Q:
+In this piece of code how do we pass text() a parameter and what is the parameter d?
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Add your code below this line
+
+
+
+      // Add your code above this line
+  </script>
+</body>
+
+GPT:
+The function passed to the text() method is called a "callback function" or just a "callback". It is a function that is passed as an argument to another function and is called (or "invoked") inside that function.
+
+In this case, the callback function is passed to the text() method, which is called on a selection of elements. The text() method sets the text content of the selected elements to the specified value.
+
+The parameter d in the callback function represents an element in the dataset that is being passed to the text() method. In this case, the dataset is an array of numbers and d is a single number in that array. The callback function takes this number and returns a string by concatenating it with the string " USD".
+
+For example, if the first element in the dataset is 12, the callback function will be called with d equal to 12 and it will return the string "12 USD". The text() method will then set the text content of the first h2 element to this string.
+
+The text() method will repeat this process for each element in the dataset, setting the text content of each h2 element to the corresponding element in the dataset with the string " USD" appended to it.
+
+Q:
+In your fourth paragraph how did we pass 12 to d in the callback function?
+
+GPT:
+The value of d in the callback function is determined by the data that is bound to the selection of elements on which the text() method is called. In this case, the data is the array [12, 31, 22, 17, 25, 18, 29, 14, 9].
+
+When the text() method is called on a selection of elements, it will iterate over the elements in the selection and the data that is bound to them. For each element in the selection, it will call the callback function with the corresponding element of the data as the argument.
+
+So, in this case, when the text() method is called on the selection of h2 elements, it will iterate over the h2 elements and the data in the dataset array. For the first h2 element, it will call the callback function with the first element of the dataset array (which is 12) as the argument. This means that the value of d in the callback function will be 12.
+
+The text() method will then repeat this process for each element in the selection and the corresponding element in the data, calling the callback function with each element of the data as the argument.
+
+Q:
+I'm confused how the text() method sets the corresponding data from the h2 elements equal to d in the callback function?
+
+GPT:
+The text() method doesn't set the corresponding data from the h2 elements equal to d in the callback function. Instead, it sets the text content of the h2 elements to the return value of the callback function.
+
+When the text() method is called on a selection of elements, it will iterate over the elements in the selection and the data that is bound to them. For each element in the selection, it will call the callback function with the corresponding element of the data as the argument.
+
+So, in this case, when the text() method is called on the selection of h2 elements, it will iterate over the h2 elements and the data in the dataset array. For the first h2 element, it will call the callback function with the first element of the dataset array (which is 12) as the argument. This means that the value of d in the callback function will be 12.
+
+The text() method will then set the text content of the first h2 element to the return value of the callback function. In this case, the callback function returns a string by concatenating the value of d with the string " USD". So, the text content of the first h2 element will be set to "12 USD".
+
+The text() method will repeat this process for each element in the selection and the corresponding element in the data, setting the text content of each h2 element to the return value of the callback function.
+
+Q:
+Ok I think I understand. Does the text() method assume that the corresponding data value of the h2 element is a string value but because ours is an integer we set a callback method as the argument in text() to transform the integer into a string value?
+
+GPT:
+The text() method does not assume that the corresponding data value is a string. It can accept either a string or a function as an argument.
+
+If you pass a string to the text() method, it will set the text content of the selected elements to that string. For example:
+
+        d3.select("body").selectAll("h2").text("Hello");
+
+This will set the text content of all h2 elements to the string "Hello".
+
+If you pass a function to the text() method, it will call the function for each element in the selection and use the return value of the function as the text content of the element. This is known as a "callback function" or just a "callback". The function is passed an argument that represents the data bound to the element.
+
+In this case, the data bound to the h2 elements is an array of integers and the callback function takes an integer as an argument and returns a string by concatenating it with the string " USD". This allows the text() method to set the text content of the h2 elements to the corresponding elements in the data array, with the string " USD" appended to each element.
+
+So, in this case, the text() method does not assume that the data values are strings. It uses a callback function to transform the data values (which are integers) into strings before setting them as the text content of the h2 elements.
+
+Q:
+If the callback method in the text() method returns an int value does the text method return a string or an integer?
+
+GPT:
+If the callback function passed to the text() method returns an integer, the text() method will not set the text content of the selected elements to that integer. Instead, it will set the text content to the string representation of the integer.
+
+For example, consider the following code:
+
+        d3.select("body").selectAll("h2").text((d) => (d + 1));
+
+In this case, the callback function returns the value of d plus 1. If d is an integer, the callback function will return an integer. However, the text() method will set the text content of the selected elements to the string representation of the integer returned by the callback function.
+
+So, in this case, the text() method will always set the text content of the selected elements to a string, even if the callback function returns an integer.
+
+It's important to note that the text() method expects a string as its argument, so if you pass it a non-string value (such as an integer), it will automatically convert that value to a string before setting it as the text content of the selected elements. This is known as "type coercion".
+-->
