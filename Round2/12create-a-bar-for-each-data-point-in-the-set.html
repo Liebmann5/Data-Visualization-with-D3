@@ -1,0 +1,27 @@
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    //I think this is dedicating an area of width and height for the bar chart?? Then below we set the size{w & h} and position{x & y} of each rectangle within this designated area?? 
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       // The rect elements must be appended to an svg element, not directly to the body. Also, you need to tell D3 where to place each rect within the svg area.
+       //Q: So is body appended to it's parent tag or D3????
+       .data(dataset)
+       .enter()
+       .append("rect")
+
+       // The bars should display all on top of each other
+       .attr("x", 0)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+  </script>
+</body>
