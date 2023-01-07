@@ -1,0 +1,15 @@
+<body>
+  <script>
+    // The bar and scatter plot charts both plotted data directly onto the SVG canvas. However, if the height of a bar or one of the data points were larger than the SVG height or width values, it would go outside the SVG area. In D3, there are scales to help plot data. scales are functions that tell the program how to map a set of raw data points onto the pixels of the SVG canvas.
+    // Before plotting it, you set the scale for your entire data set, so that the x and y values fit your canvas width and height. D3 has several scale types. For a linear scale (usually used with quantitative data), there is the D3 method scaleLinear(). By default, a scale uses the identity relationship. The value of the input is the same as the value of the output.
+
+    const scale = d3.scaleLinear(); // Create the scale here
+    const output = scale(50); // Call scale with an argument here
+
+
+    d3.select("body")
+      .append("h2")
+      .text(output);
+
+  </script>
+</body>
