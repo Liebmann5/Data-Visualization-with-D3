@@ -1,0 +1,105 @@
+<body>
+  <script>
+    const scale = d3.scaleLinear();
+
+                    scale.domain([250, 500]);
+                    scale.range([10, 150]);
+                    //.scale(250)
+                    //.scale(500);
+
+    const output = scale(50);
+    d3.select("body")
+      .append("h2")
+      .text(output);
+  </script>
+</body>
+
+
+
+<!--
+  domain = datasets-value range
+  range = ??
+
+  NOTE: THEY NEVER TALK ABOUT ABOUT HOW TO LABEL THE GRAPH!!! I BELIEVE THE SOLE PURPOSE OF DOING THIS IS TO MAKE THE GRAPH LINE LINEAR{STRAIGHT}!!!
+  {What I mean by this is that the domain's range of numbers and the range's range of unit-of-measurements tells us nothing about the graph itself!!}
+
+            f(x) = nx
+ range{result}^     ^domain{input values}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Set a Domain and a Range on a Scale
+
+By default, scales use the identity relationship. This means the input value maps to the output value. However, scales can be much more flexible and interesting.
+
+Say a dataset has values ranging from 50 to 480. This is the input information for a scale, also known as the domain.
+
+You want to map those points along the x axis on the SVG canvas, between 10 units and 500 units. This is the output information, also known as the range.
+
+The domain() and range() methods set these values for the scale. Both methods take an array of at least two elements as an argument. Here's an example:
+
+        scale.domain([50, 480]);
+        scale.range([10, 500]);
+        scale(50)
+        scale(480)
+        scale(325)
+        scale(750)
+        d3.scaleLinear()
+
+In order, the following values would be displayed in the console: 10, 500, 323.37, and 807.67.
+
+Notice that the scale uses the linear relationship between the domain and range values to figure out what the output should be for a given number. The minimum value in the domain (50) maps to the minimum value (10) in the range.
+***************************
+Create a scale and set its domain to [250, 500] and range to [10, 150].
+
+Note: You can chain the domain() and range() methods onto the scale variable.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Q:
+I'm still confused what range means here Say a dataset has values ranging from 50 to 480. This is the input information for a scale, also known as the domain.
+
+You want to map those points along the x axis on the SVG canvas, between 10 units and 500 units. This is the output information, also known as the range.
+
+GPT:
+In this context, "range" refers to the possible output values of a function or mapping.
+
+For example, in the statement "a dataset has values ranging from 50 to 480," the range is the set of all possible values that the dataset can take on, which is from 50 to 480.
+
+On the other hand, "you want to map those points along the x axis on the SVG canvas, between 10 units and 500 units" refers to the output of the mapping, or the range of the mapping. In this case, the range of the mapping is from 10 units to 500 units.
+
+The input values, or the domain, are the values of the dataset that are being mapped to the output range. In this case, the input values are the values in the dataset ranging from 50 to 480, and the output values are the points along the x axis on the SVG canvas ranging from 10 units to 500 units.
+
+Q:
+ok how did they get these values The domain() and range() methods set these values for the scale. Both methods take an array of at least two elements as an argument. Here's an example:
+
+scale.domain([50, 480]);
+scale.range([10, 500]);
+scale(50)
+scale(480)
+scale(325)
+scale(750)
+d3.scaleLinear()
+
+In order, the following values would be displayed in the console: 10, 500, 323.37, and 807.67.
+
+GPT:
+The domain and range methods are used to define the input and output values for a scale in the D3.js library. The domain method sets the input values for the scale, and the range method sets the output values for the scale.
+
+In the example you provided, the domain method is called with the array [50, 480] as an argument, which sets the input values for the scale to be the numbers from 50 to 480. The range method is called with the array [10, 500] as an argument, which sets the output values for the scale to be the numbers from 10 to 500.
+
+The scale function is then called with different input values (50, 480, 325, and 750) to see how they map to the output values defined by the scale. When the scale function is called with an input value that is within the domain (50 or 480), it will return the corresponding output value from the range (10 or 500). When the scale function is called with an input value that is outside the domain (325 or 750), it will return a value that is interpolated between the values in the range.
+
+The d3.scaleLinear function is used to create a new linear scale, which is a type of scale that maps input values linearly to output values. A linear scale is useful when you want to map a continuous input domain to a continuous output range, and the relationship between the input and output values is linear.
+
+Q:
+So when they call run scale(50) it is equal to 10 because 50 is the lowest input value and 10 is the lowest output value. Which is how you keep the graph linear
+
+GPT:
+Yes, that's correct. When the scale function is called with an input value that is within the domain (50 or 480), it will return the corresponding output value from the range (10 or 500).
+
+The scale function maps input values from the domain to output values in the range using a linear relationship. This means that if the input values are evenly spaced, the output values will also be evenly spaced. For example, if the input values are [50, 100, 150, 200], and the output values are [10, 20, 30, 40], then the scale function will map the input values 50 and 100 to the output values 10 and 20, respectively, because they are evenly spaced. Similarly, the input values 150 and 200 will be mapped to the output values 30 and 40, respectively.
+
+This linear relationship helps to keep the graph of the data points linear, because the input values and output values are related in a consistent way. If the input values were not evenly spaced, the output values would not be evenly spaced either, which could result in a non-linear graph.
+
+OTHER: Also remember that they treat scale as a f(n)!!
+-->
